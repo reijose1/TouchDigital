@@ -22,9 +22,9 @@ const services = servicesData as ServiceItem[];
 <header class="header" id="main-header" role="banner">
   <nav class="nav section-container" aria-label="Navegación principal">
     <!-- Logo -->
-    <a href="/" class="logo-link" aria-label="Learning Touch — Inicio">
+    <a href={import.meta.env.BASE_URL} class="logo-link" aria-label="Learning Touch — Inicio">
       <img
-        src="/assets/logos/header-logo.webp"
+        src={`${import.meta.env.BASE_URL}assets/logos/header-logo.webp`}
         alt="Learning Touch — Consultoría digital y creativa"
         width="160"
         height="40"
@@ -54,7 +54,7 @@ const services = servicesData as ServiceItem[];
         <div class="mega-menu" role="menu" aria-labelledby="services-menu-btn" id="services-mega-menu">
           <div class="mega-menu-grid">
             {services.map((service) => (
-              <a href={service.link} class="mega-menu-item" role="menuitem">
+              <a href={`${import.meta.env.BASE_URL}${service.link.replace(/^\//, '')}`} class="mega-menu-item" role="menuitem">
                 <div class="mega-menu-icon" aria-hidden="true">
                   <span class="mega-menu-emoji">{service.icon}</span>
                 </div>

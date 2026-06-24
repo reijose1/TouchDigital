@@ -46,7 +46,7 @@ const projects = portfolioData as PortfolioItem[];
           role="article"
         >
           <img
-            src={project.image}
+            src={`${import.meta.env.BASE_URL}${project.image.replace(/^\//, '')}`}
             alt={`Proyecto: ${project.title} — ${project.description}`}
             width="600"
             height={index % 2 === 0 ? 500 : 350}

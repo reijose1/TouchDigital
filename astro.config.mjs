@@ -10,7 +10,7 @@ export default defineConfig({
   site: 'https://reijose1.github.io',
   
   // <--- NUEVO: La ruta base que coincide con el nombre de tu repositorio
-  base: '/TouchDigital',
+  base: '/TouchDigital/',
   
   // <--- NUEVO: Forzamos el modo estático (es el que usa Astro por defecto, 
   // pero explicitarlo evita que GitHub Pages intente servir funciones server-side)

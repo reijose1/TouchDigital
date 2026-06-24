@@ -108,7 +108,7 @@ export const AnimatedCoin: React.FC = () => {
 
       {/* Main Coin Image */}
       <motion.img
-        src="/assets/hero/click-coin.webp"
+        src={`${import.meta.env.BASE_URL}assets/hero/click-coin.webp`}
         alt="CLICK — Moneda del Aprendiz. Símbolo del conocimiento en un clic"
         width={480}
         height={480}
