@@ -17,15 +17,10 @@ jobs:
       - name: Clonar repositorio
         uses: actions/checkout@v4
 
-      # ---- NUEVO PASO CRÍTICO ----
-      - name: Configurar Node.js 22
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-
       - name: Instalar, construir y subir artefacto
         uses: withastro/action@v2
-        # No es necesario pasar node-version aquí porque ya lo configuramos antes
+        with:
+          node-version: '22'   # <--- FORZAMOS NODE 22 AQUÍ, DENTRO DEL ACTION
 
   deploy:
     needs: build
