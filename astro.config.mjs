@@ -6,7 +6,17 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://learningtouch.com',
+  // <--- CAMBIADO: Antes era 'https://learningtouch.com' 
+  site: 'https://reijose1.github.io',
+  
+  // <--- NUEVO: La ruta base que coincide con el nombre de tu repositorio
+  base: '/TouchDigital',
+  
+  // <--- NUEVO: Forzamos el modo estático (es el que usa Astro por defecto, 
+  // pero explicitarlo evita que GitHub Pages intente servir funciones server-side)
+  output: 'static',
+
+  // ---------- DE AQUÍ PARA ABAJO NO TOCAMOS NADA, QUEDA IGUAL ----------
   integrations: [
     react(),
     sitemap(),
@@ -14,11 +24,11 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     build: {
-      minify: false,
+      minify: false,  // <--- Se respeta tu petición, sigue desactivado
     },
     optimizeDeps: {
       noDiscovery: true,
-      include: [],
+      include: [],    // <--- Se respeta tu array vacío
     },
   },
 });
