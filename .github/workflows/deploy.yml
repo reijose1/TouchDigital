@@ -16,8 +16,13 @@ jobs:
     steps:
       - name: Clonar repositorio
         uses: actions/checkout@v4
+      - name: Configurar Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
       - name: Instalar, construir y subir artefacto
         uses: withastro/action@v2
+        # El action usará la versión de Node que configuramos arriba
 
   deploy:
     needs: build
