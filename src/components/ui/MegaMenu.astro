@@ -1,0 +1,543 @@
+---
+/**
+ * MegaMenu — Sticky header with glassmorphism, navigation, services dropdown,
+ * language switcher, and contact CTA.
+ */
+
+import servicesData from '../../data/services.json';
+
+interface ServiceItem {
+  id: number;
+  title_es: string;
+  title_en: string;
+  description_es: string;
+  description_en: string;
+  icon: string;
+  link: string;
+}
+
+const services = servicesData as ServiceItem[];
+---
+
+<header class="header" id="main-header" role="banner">
+  <nav class="nav section-container" aria-label="Navegación principal">
+    <!-- Logo -->
+    <a href="/" class="logo-link" aria-label="Learning Touch — Inicio">
+      <img
+        src="/assets/logos/header-logo.webp"
+        alt="Learning Touch — Consultoría digital y creativa"
+        width="160"
+        height="40"
+        loading="eager"
+        decoding="async"
+      />
+    </a>
+
+    <!-- Desktop Navigation -->
+    <ul class="nav-list" role="menubar">
+      <li role="none" class="services-trigger">
+        <button
+          class="nav-link text-ui services-btn"
+          role="menuitem"
+          aria-haspopup="true"
+          aria-expanded="false"
+          id="services-menu-btn"
+        >
+          <span class="lang-es">Programas</span>
+          <span class="lang-en">Programs</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <!-- Mega Menu Dropdown -->
+        <div class="mega-menu" role="menu" aria-labelledby="services-menu-btn" id="services-mega-menu">
+          <div class="mega-menu-grid">
+            {services.map((service) => (
+              <a href={service.link} class="mega-menu-item" role="menuitem">
+                <div class="mega-menu-icon" aria-hidden="true">
+                  <span class="mega-menu-emoji">{service.icon}</span>
+                </div>
+                <div>
+                  <span class="mega-menu-title">
+                    <span class="lang-es">{service.title_es}</span>
+                    <span class="lang-en">{service.title_en}</span>
+                  </span>
+                  <span class="mega-menu-desc">
+                    <span class="lang-es">{service.description_es}</span>
+                    <span class="lang-en">{service.description_en}</span>
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </li>
+      <li role="none">
+        <a href="#about" class="nav-link text-ui" role="menuitem">
+          <span class="lang-es">Acerca de</span>
+          <span class="lang-en">About Us</span>
+        </a>
+      </li>
+      <li role="none">
+        <a href="#portafolio" class="nav-link text-ui" role="menuitem">
+          <span class="lang-es">Portafolio</span>
+          <span class="lang-en">Portfolio</span>
+        </a>
+      </li>
+      <li role="none">
+        <a href="#contacto" class="nav-link text-ui" role="menuitem">
+          <span class="lang-es">Contacto</span>
+          <span class="lang-en">Contact</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Right Side: Language Switch + CTA -->
+    <div class="nav-right">
+      <!-- Language Switcher (i18n scaffolding) -->
+      <button
+        class="lang-switch text-small"
+        aria-label="Cambiar idioma a inglés"
+        id="lang-toggle"
+        type="button"
+        onclick="window.toggleLanguage()"
+      >
+        <span class="lang-es-indicator font-semibold">ES</span>
+        <span class="lang-separator">/</span>
+        <span class="lang-en-indicator">EN</span>
+      </button>
+
+      <!-- CTA Button / Ingresa -->
+      <a
+        href="#contacto"
+        class="nav-cta text-ui"
+        role="link"
+        aria-label="Ingresa"
+      >
+        <span class="lang-es">Ingresa</span>
+        <span class="lang-en">Log In</span>
+      </a>
+
+      <!-- Mobile Hamburger -->
+      <button
+        class="mobile-toggle"
+        aria-label="Abrir menú de navegación"
+        id="mobile-menu-btn"
+        type="button"
+      >
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+    <ul class="mobile-nav-list">
+      <li>
+        <a href="#servicios" class="mobile-nav-link text-ui">
+          <span class="lang-es">Programas</span>
+          <span class="lang-en">Programs</span>
+        </a>
+      </li>
+      <li>
+        <a href="#about" class="mobile-nav-link text-ui">
+          <span class="lang-es">Acerca de</span>
+          <span class="lang-en">About Us</span>
+        </a>
+      </li>
+      <li>
+        <a href="#portafolio" class="mobile-nav-link text-ui">
+          <span class="lang-es">Portafolio</span>
+          <span class="lang-en">Portfolio</span>
+        </a>
+      </li>
+      <li>
+        <a href="#contacto" class="mobile-nav-link text-ui">
+          <span class="lang-es">Contacto</span>
+          <span class="lang-en">Contact</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<style>
+  /* === Sticky Header — Light/Clean === */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(42, 26, 53, 0.08);
+    transition: background var(--duration-state) var(--ease-state), box-shadow var(--duration-state) var(--ease-state);
+    box-shadow: 0 1px 20px rgba(42, 26, 53, 0.06);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    gap: 2rem;
+  }
+
+  .logo-link {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-link img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* === Desktop Nav Links === */
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-list .nav-link {
+    color: #2a1a35;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0.5rem 0;
+  }
+
+  .nav-list .nav-link:hover {
+    color: #c25270;
+  }
+
+  .nav-list .nav-link::after {
+    background-color: #c25270;
+  }
+
+  .chevron {
+    transition: transform var(--duration-micro) var(--ease-micro);
+  }
+
+  .services-trigger:hover .chevron,
+  .services-trigger:focus-within .chevron {
+    transform: rotate(180deg);
+  }
+
+  /* === Mega Menu Dropdown === */
+  .services-trigger {
+    position: relative;
+  }
+
+  .mega-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    background: rgba(59, 34, 68, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 16px;
+    padding: 1.5rem;
+    min-width: 560px;
+    box-shadow: 0 20px 60px rgba(59, 34, 68, 0.4);
+    border: 1px solid rgba(205, 187, 176, 0.15);
+    transition:
+      opacity var(--duration-state) var(--ease-state),
+      transform var(--duration-state) var(--ease-state),
+      visibility var(--duration-state);
+  }
+
+  .services-trigger:hover .mega-menu,
+  .services-trigger:focus-within .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .mega-menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .mega-menu-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 0.75rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--color-primary-nude);
+    transition: background var(--duration-micro) var(--ease-micro);
+  }
+
+  .mega-menu-item:hover {
+    background: rgba(205, 187, 176, 0.1);
+  }
+
+  .mega-menu-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(194, 82, 112, 0.15);
+    color: var(--color-accent-honeysuckle);
+  }
+
+  .mega-menu-emoji {
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .mega-menu-title {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+    margin-bottom: 2px;
+  }
+
+  .mega-menu-desc {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-text-muted);
+    line-height: 1.4;
+  }
+
+  /* === Right Side === */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: 1px solid rgba(42, 26, 53, 0.2);
+    border-radius: 20px;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: #2a1a35;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 500;
+    transition: border-color var(--duration-micro) var(--ease-micro);
+  }
+
+  .lang-switch:hover {
+    border-color: #c25270;
+    color: #c25270;
+  }
+
+  .lang-active {
+    color: #2a1a35;
+    font-weight: 700;
+  }
+
+  .lang-separator {
+    color: rgba(42, 26, 53, 0.35);
+  }
+
+  .lang-inactive {
+    color: rgba(42, 26, 53, 0.45);
+  }
+
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 22px;
+    background: #2a1a35;
+    color: #fff;
+    border-radius: 999px;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    text-transform: none;
+    transition:
+      background var(--duration-micro) var(--ease-micro),
+      transform var(--duration-micro) var(--ease-micro),
+      box-shadow var(--duration-micro) var(--ease-micro);
+  }
+
+  .nav-cta:hover {
+    background: #3b2244;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(42, 26, 53, 0.3);
+  }
+
+  /* === Mobile Toggle === */
+  .mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    width: 32px;
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #2a1a35;
+    border-radius: 2px;
+    transition:
+      transform var(--duration-state) var(--ease-state),
+      opacity var(--duration-state) var(--ease-state);
+  }
+
+  /* Hamburger open state */
+  .mobile-toggle[aria-expanded='true'] .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .mobile-toggle[aria-expanded='true'] .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  .mobile-toggle[aria-expanded='true'] .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* === Mobile Menu Overlay === */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 999;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition:
+      opacity var(--duration-state) var(--ease-state),
+      transform var(--duration-state) var(--ease-state);
+  }
+
+  .mobile-menu.open {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-nav-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .mobile-nav-link {
+    color: #2a1a35;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 600;
+    transition: color var(--duration-micro) var(--ease-micro);
+  }
+
+  .mobile-nav-link:hover {
+    color: #c25270;
+  }
+
+  /* === Responsive === */
+  @media (max-width: 768px) {
+    .nav-list {
+      display: none;
+    }
+
+    .nav-cta {
+      display: none;
+    }
+
+    .mobile-toggle {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  /**
+   * MegaMenu client-side interactions:
+   * - Mobile hamburger toggle
+   * - Close mobile menu on link click
+   * - Keyboard accessibility for mega menu
+   */
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        const isExpanded = mobileBtn.getAttribute('aria-expanded') === 'true';
+        mobileBtn.setAttribute('aria-expanded', String(!isExpanded));
+        mobileMenu.classList.toggle('open');
+
+        // Update aria-label based on state
+        mobileBtn.setAttribute(
+          'aria-label',
+          isExpanded ? 'Abrir menú de navegación' : 'Cerrar menú de navegación'
+        );
+      });
+
+      // Close mobile menu when a link is clicked
+      const mobileLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
+      mobileLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileBtn.setAttribute('aria-expanded', 'false');
+          mobileMenu.classList.remove('open');
+        });
+      });
+    }
+
+    // Close mega menu on Escape key
+    const servicesBtn = document.getElementById('services-menu-btn');
+    if (servicesBtn) {
+      servicesBtn.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          servicesBtn.blur();
+        }
+      });
+    }
+  });
+</script>

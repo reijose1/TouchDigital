@@ -1,0 +1,152 @@
+---
+/**
+ * Card — Presentational card component for Services and Portfolio grids.
+ * - Large border radius (24px)
+ * - Top-left badge containing icon (emoji or SVG)
+ * - Honeysuckle link at the bottom
+ * - Alternating colors (light cream/beige card vs dark purple card)
+ * - Bilingual: uses lang-es / lang-en wrappers for title and description
+ */
+interface Props {
+  title_es: string;
+  title_en: string;
+  description_es: string;
+  description_en: string;
+  icon?: string;
+  variant?: 'light' | 'dark';
+  linkHref?: string;
+}
+
+const {
+  title_es,
+  title_en,
+  description_es,
+  description_en,
+  icon,
+  variant = 'light',
+  linkHref = '#contacto',
+} = Astro.props;
+---
+
+<article
+  class={`card group ${variant === 'dark' ? 'card-dark' : 'card-light'}`}
+  role="article"
+>
+  <div class="card-icon" aria-hidden="true">
+    <span class="card-icon-emoji">{icon}</span>
+  </div>
+
+  <div class="card-body">
+    <h3 class="card-title text-h3 mt-6 mb-3">
+      <span class="lang-es">{title_es}</span>
+      <span class="lang-en">{title_en}</span>
+    </h3>
+    <p class="card-desc text-body">
+      <span class="lang-es">{description_es}</span>
+      <span class="lang-en">{description_en}</span>
+    </p>
+  </div>
+
+  <div class="card-footer mt-6">
+    <a href={linkHref} class="card-link" aria-label={`Más información sobre ${title_es}`}>
+      <span class="lang-es">Más información →</span>
+      <span class="lang-en">More information →</span>
+    </a>
+  </div>
+</article>
+
+<style>
+  .card {
+    border-radius: 24px;
+    padding: 2.25rem;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition:
+      transform var(--duration-state) var(--ease-state),
+      box-shadow var(--duration-state) var(--ease-state);
+    position: relative;
+    will-change: transform;
+    border: 1px solid rgba(205, 187, 176, 0.15);
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  /* --- Variant Light --- */
+  .card-light {
+    background: linear-gradient(135deg, #fbf9f6 0%, #f4eee7 100%);
+  }
+
+  .card-light .card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: var(--color-primary-lilac);
+    color: #ffffff;
+  }
+
+  .card-icon-emoji {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .card-light .card-title {
+    color: var(--color-primary-lilac);
+  }
+
+  .card-light .card-desc {
+    color: var(--color-text-muted);
+  }
+
+  /* --- Variant Dark --- */
+  .card-dark {
+    background: var(--color-primary-lilac);
+  }
+
+  .card-dark .card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: var(--color-accent-honeysuckle);
+    color: #ffffff;
+  }
+
+  .card-dark .card-icon-emoji {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .card-dark .card-title {
+    color: #ffffff;
+  }
+
+  .card-dark .card-desc {
+    color: rgba(205, 187, 176, 0.85);
+  }
+
+  /* --- Footer Link styling --- */
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-accent-honeysuckle);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: transform 0.2s ease-out;
+  }
+
+  .card-link:hover {
+    transform: translateX(4px);
+  }
+</style>

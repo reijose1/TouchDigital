@@ -1,0 +1,346 @@
+---
+/**
+ * EducationImpact.astro — "Acerca de" section.
+ * Two-column layout: text + video placeholder.
+ * Includes i18n (lang-es / lang-en) wrappers for all copy.
+ */
+---
+
+<section id="about" class="about-section">
+  <div class="about-container">
+    <div class="about-grid">
+
+      <!-- ── Columna Izquierda: Texto ── -->
+      <div class="about-text">
+
+        <!-- Eyebrow -->
+        <span class="about-eyebrow">
+          <span class="lang-es">ACERCA DE NOSOTROS</span>
+          <span class="lang-en">ABOUT US</span>
+        </span>
+
+        <!-- H2 -->
+        <h2 class="about-heading">
+          <span class="lang-es">Potenciamos tu <br />Ecosistema Digital</span>
+          <span class="lang-en">We Power your <br />Digital Ecosystem</span>
+        </h2>
+
+        <!-- Frase clave -->
+        <p class="about-tagline">
+          Knowledge en un Clic
+        </p>
+
+        <!-- Descripción -->
+        <p class="about-description">
+          <span class="lang-es">En Learning Touch diseñamos soluciones integrales con inteligencia artificial y creatividad estratégica para educación, eventos y empresas. Nuestras cuatro áreas de servicio trabajan en sinergia para llevar tu marca al siguiente nivel.</span>
+          <span class="lang-en">At Learning Touch we design comprehensive solutions with artificial intelligence and strategic creativity for education, events, and businesses. Our four service areas work in synergy to take your brand to the next level.</span>
+        </p>
+
+        <!-- Checkmark list -->
+        <ul class="about-list">
+          <li class="about-list-item">
+            <span class="check-icon" aria-hidden="true">✅</span>
+            <span>
+              <strong class="item-title">
+                <span class="lang-es">Desarrollo Web &amp; Automatización:</span>
+                <span class="lang-en">Web Development &amp; Automation:</span>
+              </strong>
+              <span class="item-desc">
+                <span class="lang-es"> Sitios web optimizados e IA en la nube para procesos eficientes.</span>
+                <span class="lang-en"> Optimized websites and cloud AI for efficient processes.</span>
+              </span>
+            </span>
+          </li>
+          <li class="about-list-item">
+            <span class="check-icon" aria-hidden="true">✅</span>
+            <span>
+              <strong class="item-title">
+                <span class="lang-es">Publicidad &amp; Redes Sociales:</span>
+                <span class="lang-en">Advertising &amp; Social Media:</span>
+              </strong>
+              <span class="item-desc">
+                <span class="lang-es"> Campañas de alto impacto y gestión de comunidades.</span>
+                <span class="lang-en"> High-impact campaigns and community management.</span>
+              </span>
+            </span>
+          </li>
+          <li class="about-list-item">
+            <span class="check-icon" aria-hidden="true">✅</span>
+            <span>
+              <strong class="item-title">
+                <span class="lang-es">Recursos Educativos:</span>
+                <span class="lang-en">Educational Resources:</span>
+              </strong>
+              <span class="item-desc">
+                <span class="lang-es"> Ebooks, audios, videos y materiales didácticos personalizados.</span>
+                <span class="lang-en"> Ebooks, audio, videos, and custom learning materials.</span>
+              </span>
+            </span>
+          </li>
+          <li class="about-list-item">
+            <span class="check-icon" aria-hidden="true">✅</span>
+            <span>
+              <strong class="item-title">
+                <span class="lang-es">Contenido &amp; Comunicación:</span>
+                <span class="lang-en">Content &amp; Communication:</span>
+              </strong>
+              <span class="item-desc">
+                <span class="lang-es"> Estrategias omnicanal y comunicación interactiva.</span>
+                <span class="lang-en"> Omnichannel strategies and interactive communication.</span>
+              </span>
+            </span>
+          </li>
+        </ul>
+
+        <!-- CTAs -->
+        <div class="about-ctas">
+          <a href="#contacto" class="btn-about-primary" id="about-cta-session">
+            <span class="lang-es">AGENDA UNA SESIÓN GRATUITA</span>
+            <span class="lang-en">BOOK A FREE SESSION</span>
+          </a>
+          <a href="/historia" class="btn-about-secondary" id="about-cta-history">
+            <span class="lang-es">VER NUESTRA HISTORIA</span>
+            <span class="lang-en">OUR STORY</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ── Columna Derecha: Video Placeholder ── -->
+      <div class="about-video-wrapper" aria-label="Video promocional próximamente">
+        <div class="about-video-inner">
+          <svg class="play-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <p class="video-label">
+            <span class="lang-es">Video promocional</span>
+            <span class="lang-en">Promo video</span>
+          </p>
+          <p class="video-soon">
+            <span class="lang-es">(Próximamente)</span>
+            <span class="lang-en">(Coming soon)</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── Section ── */
+  .about-section {
+    padding: 5rem 0;
+    background: var(--color-bg-light);
+  }
+
+  @media (min-width: 768px) {
+    .about-section {
+      padding: 7rem 0;
+    }
+  }
+
+  /* ── Container ── */
+  .about-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 5vw, 80px);
+  }
+
+  /* ── Two-column grid ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+  }
+
+  /* ── Left column ── */
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Eyebrow */
+  .about-eyebrow {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent-honeysuckle);
+    margin-bottom: 0.75rem;
+  }
+
+  /* H2 */
+  .about-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    color: var(--color-primary-lilac);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.75rem;
+  }
+
+  /* Tagline */
+  .about-tagline {
+    font-family: var(--font-heading);
+    font-size: clamp(16px, 1.5vw, 20px);
+    font-weight: 700;
+    color: var(--color-accent-honeysuckle);
+    margin: 0 0 1rem;
+    line-height: 1.2;
+  }
+
+  /* Description */
+  .about-description {
+    font-family: var(--font-body);
+    font-size: clamp(15px, 1.2vw, 18px);
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    margin: 0 0 1.75rem;
+  }
+
+  /* Checkmark list */
+  .about-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+  }
+
+  .about-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    font-family: var(--font-body);
+    font-size: clamp(14px, 1.1vw, 16px);
+    line-height: 1.55;
+  }
+
+  .check-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .item-title {
+    font-weight: 700;
+    color: var(--color-primary-lilac);
+  }
+
+  .item-desc {
+    color: var(--color-text-muted);
+  }
+
+  /* CTAs */
+  .about-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .btn-about-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 2rem;
+    background: var(--color-accent-honeysuckle);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 18px rgba(194, 82, 112, 0.3);
+  }
+
+  .btn-about-primary:hover {
+    transform: scale(1.04);
+    box-shadow: 0 8px 28px rgba(194, 82, 112, 0.45);
+  }
+
+  .btn-about-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 2rem;
+    border: 2px solid var(--color-primary-lilac);
+    color: var(--color-primary-lilac);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .btn-about-secondary:hover {
+    background: var(--color-primary-lilac);
+    color: #fff;
+  }
+
+  /* ── Right column: video placeholder ── */
+  .about-video-wrapper {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--color-primary-lilac);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(59, 34, 68, 0.22);
+  }
+
+  .about-video-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary-nude);
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .play-icon {
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1rem;
+    opacity: 0.85;
+  }
+
+  .video-label {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+
+  .video-soon {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    opacity: 0.6;
+    margin-top: 0.25rem;
+  }
+
+  /* ── Reveal ── */
+  #about {
+    scroll-margin-top: 80px;
+  }
+</style>

@@ -1,0 +1,432 @@
+/* ============================================
+ * Learning Touch — Global Styles
+ * Design System: design.md v1.0
+ * ============================================ */
+
+/* --- Google Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Inter:wght@400;500;600&family=Arimo:wght@400;500&display=swap');
+
+/* --- Tailwind v4 Imports --- */
+@import 'tailwindcss';
+
+/* ============================================
+ * 1. CSS CUSTOM PROPERTIES (Design Tokens)
+ * ============================================ */
+@theme {
+  /* Reference Project Colors */
+  --color-lilac: #3b2244;
+  --color-beigeAccent: #cdbbb0;
+  --color-beige-accent: #cdbbb0;
+  --color-honeysuckle: #c25270;
+  --color-darkGrey: #2c2c2c;
+  --color-dark-grey: #2c2c2c;
+  --color-primaryBg: #f9f9f9;
+  --color-primary-bg: #f9f9f9;
+
+  /* Primary Colors */
+  --color-primary-lilac: #3b2244;
+  --color-primary-nude: #cdbbb0;
+
+  /* Accent & Secondary Colors */
+  --color-accent-honeysuckle: #c25270;
+  --color-secondary-cognac: #856c71;
+
+  /* Backgrounds & Surfaces */
+  --color-bg-dark: #3b2244;
+  --color-bg-light: #f8f5f3;
+  --color-surface-cards: #ffffff;
+
+  /* Text Colors */
+  --color-text-main: #3b2244;
+  --color-text-inverse: #cdbbb0;
+  --color-text-muted: #856c71;
+
+  /* Font Families */
+  --font-display: 'Bebas Neue', 'Impact', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-ui: 'Inter', sans-serif;
+  --font-heading: 'DM Sans', 'Helvetica Neue', sans-serif;
+  --font-fallback: 'Arimo', 'Helvetica', sans-serif;
+
+  /* Shadows (Lilac-tinted) */
+  --shadow-card: 0 10px 30px rgba(59, 34, 68, 0.08);
+  --shadow-card-hover: 0 20px 40px rgba(59, 34, 68, 0.15);
+  --shadow-button: 0 4px 15px rgba(194, 82, 112, 0.3);
+
+  /* Animation Durations */
+  --duration-micro: 150ms;
+  --duration-state: 300ms;
+  --duration-entrance: 600ms;
+  --duration-entrance-slow: 900ms;
+
+  /* Animation Easings */
+  --ease-micro: ease-out;
+  --ease-state: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-entrance: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ============================================
+ * 2. BASE STYLES & RESETS
+ * ============================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.6;
+  color: var(--color-text-main);
+  background-color: var(--color-bg-light);
+  overflow-x: hidden;
+}
+
+/* ============================================
+ * 3. TYPOGRAPHY SYSTEM (Modular Scale 1.250)
+ * ============================================ */
+
+/* Display — Hero H1 */
+.text-display {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 8vw, 120px);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+/* Heading 2 — Section Titles */
+.text-h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* Heading 3 — Card Subtitles */
+.text-h3 {
+  font-family: var(--font-heading);
+  font-size: clamp(20px, 2.5vw, 32px);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+/* Body Large — Descriptions */
+.text-body-lg {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .text-body-lg {
+    font-size: 18px;
+  }
+}
+
+/* Body Regular — Paragraphs */
+.text-body {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.2vw, 18px);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+}
+
+/* Small Text — Metadata */
+.text-small {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .text-small {
+    font-size: 12px;
+  }
+}
+
+/* Buttons & UI Labels */
+.text-ui {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .text-ui {
+    font-size: 14px;
+  }
+}
+
+/* ============================================
+ * 4. FOCUS STATES (WCAG 2.1 AA)
+ * ============================================ */
+:focus-visible {
+  outline: 3px solid var(--color-accent-honeysuckle);
+  outline-offset: 4px;
+}
+
+/* Never remove outline without replacement */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
+ * 5. ANIMATION KEYFRAMES
+ * ============================================ */
+
+/* Floating animation for hero coin */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-12px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-18px) rotate(2deg);
+  }
+}
+
+/* Scroll indicator pulse */
+@keyframes scroll-line {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+}
+
+/* Fade up entrance for scroll reveals */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Skeleton shimmer for loading states */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Slow rotation for isotype */
+@keyframes slow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Organic blob float */
+@keyframes blob-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(15px, -20px) scale(1.05);
+  }
+  66% {
+    transform: translate(-10px, 10px) scale(0.95);
+  }
+}
+
+/* Particle float */
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-30px) translateX(10px);
+    opacity: 1;
+  }
+}
+
+/* ============================================
+ * 6. UTILITY CLASSES
+ * ============================================ */
+
+/* Scroll reveal — applied via Intersection Observer */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--duration-entrance) var(--ease-entrance),
+              transform var(--duration-entrance) var(--ease-entrance);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for child elements */
+.reveal-stagger > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger > *:nth-child(2) { transition-delay: 100ms; }
+.reveal-stagger > *:nth-child(3) { transition-delay: 200ms; }
+.reveal-stagger > *:nth-child(4) { transition-delay: 300ms; }
+
+/* Skeleton loading state */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(59, 34, 68, 0.06) 25%,
+    rgba(59, 34, 68, 0.12) 50%,
+    rgba(59, 34, 68, 0.06) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+/* Organic decorative shapes */
+.organic-shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.07;
+  will-change: transform;
+  animation: blob-float 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Nav link animated underline */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--duration-micro) var(--ease-micro);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent-honeysuckle);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-state) var(--ease-state);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Section container */
+.section-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 5vw, 80px);
+}
+
+/* ============================================
+ * 7. ACCESSIBILITY: REDUCED MOTION
+ * ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================
+ * 8. TRANSLATIONS (i18n Visibility)
+ * ============================================ */
+body[data-lang="en"] .lang-es {
+  display: none !important;
+}
+
+body[data-lang="es"] .lang-en {
+  display: none !important;
+}
+
+/* ============================================
+ * 9. BUTTON & CTA STYLES (Reference Match)
+ * ============================================ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.875rem 2rem;
+  background: var(--color-accent-honeysuckle);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  border-radius: 9999px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(194, 82, 112, 0.4);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.875rem 2rem;
+  border: 2px solid var(--color-primary-lilac);
+  color: var(--color-primary-lilac);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  border-radius: 9999px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--color-primary-lilac);
+  color: var(--color-primary-nude);
+}
+

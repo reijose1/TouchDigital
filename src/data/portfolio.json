@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "tarjeteria-digital",
+    "title": "Tarjetería Digital",
+    "description": "Solución inteligente para el diseño y distribución de tarjetas de presentación virtuales, facilitando el networking profesional sin papel.",
+    "image": "/assets/portfolio/project-argon.webp",
+    "titleEn": "Digital Business Cards",
+    "descriptionEn": "A smart solution for designing and sharing virtual business cards, enabling seamless paperless networking for professionals."
+  },
+  {
+    "slug": "recursos-educativos-digitales",
+    "title": "Recursos Educativos Digitales",
+    "description": "Diseño de materiales interactivos y didácticos multimedia que enriquecen los procesos pedagógicos en entornos virtuales de aprendizaje.",
+    "image": "/assets/portfolio/project-cyber.webp",
+    "titleEn": "Digital Educational Resources",
+    "descriptionEn": "Design of interactive and educational multimedia resources that enrich pedagogical processes in virtual learning environments."
+  },
+  {
+    "slug": "ovas-evaluacion-docente",
+    "title": "OVAs y Sistema de Evaluación Docente",
+    "description": "Objetos Virtuales de Aprendizaje y plataforma de evaluación de desempeño para docentes del sector oficial, promoviendo la mejora continua.",
+    "image": "/assets/portfolio/project-training.webp",
+    "titleEn": "LOAs & Teacher Evaluation System",
+    "descriptionEn": "Learning Objects (LOAs) and a performance evaluation platform for public sector teachers, promoting continuous professional improvement."
+  },
+  {
+    "slug": "ecommerce-productos",
+    "title": "Ecommerce para Comercialización de Productos",
+    "description": "Plataforma de comercio electrónico de alto rendimiento, optimizada para ofrecer transacciones seguras y una experiencia de usuario fluida.",
+    "image": "/assets/portfolio/project-learn-ai.webp",
+    "titleEn": "E-commerce for Product Sales",
+    "descriptionEn": "High-performance e-commerce platform optimized to deliver secure transactions and a seamless user experience."
+  }
+]

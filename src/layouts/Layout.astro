@@ -1,0 +1,181 @@
+---
+/**
+ * Layout.astro — Base layout for all pages.
+ * Handles:
+ * - SEO meta tags (title, description, OG, Twitter)
+ * - Global stylesheet import
+ * - Scroll-reveal Intersection Observer script
+ * - Accessibility attributes
+ */
+
+interface Props {
+  /** Page title for SEO */
+  title?: string;
+  /** Meta description */
+  description?: string;
+}
+
+import '../styles/globals.css';
+
+const {
+  title = 'Learning Touch — Touch Digital & Creative Consulting',
+  description = 'Formamos estudiantes con pensamiento crítico, herramientas digitales y valores sólidos para un mundo en constante transformación.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Reinaldo Carrillo" />
+    <link rel="canonical" href={Astro.url.href} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:site_name" content="Learning Touch" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Generator -->
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Inline Language Switcher Initialization (Prevents flash of untranslated content) -->
+    <script is:inline>
+      (function() {
+        const savedLang = localStorage.getItem('preferred-lang') || 'es';
+        document.documentElement.setAttribute('lang', savedLang);
+        
+        window.addEventListener('DOMContentLoaded', () => {
+          document.body.setAttribute('data-lang', savedLang);
+          updateToggleButtons(savedLang);
+        });
+
+        window.updateToggleButtons = function(lang) {
+          const switches = document.querySelectorAll('.lang-switch');
+          switches.forEach((btn) => {
+            const esIndicator = btn.querySelector('.lang-es-indicator');
+            const enIndicator = btn.querySelector('.lang-en-indicator');
+            if (lang === 'es') {
+              if (esIndicator) esIndicator.className = 'lang-es-indicator lang-active font-semibold text-white';
+              if (enIndicator) enIndicator.className = 'lang-en-indicator lang-inactive text-[#856c71]';
+              btn.setAttribute('aria-label', 'Cambiar idioma a inglés');
+            } else {
+              if (esIndicator) esIndicator.className = 'lang-es-indicator lang-inactive text-[#856c71]';
+              if (enIndicator) enIndicator.className = 'lang-en-indicator lang-active font-semibold text-white';
+              btn.setAttribute('aria-label', 'Switch language to Spanish');
+            }
+          });
+        };
+
+        window.toggleLanguage = function() {
+          const currentLang = document.documentElement.getAttribute('lang') || 'es';
+          const newLang = currentLang === 'es' ? 'en' : 'es';
+          localStorage.setItem('preferred-lang', newLang);
+          document.documentElement.setAttribute('lang', newLang);
+          document.body.setAttribute('data-lang', newLang);
+          updateToggleButtons(newLang);
+        };
+      })();
+    </script>
+  </head>
+
+  <body>
+    <slot />
+
+    <!-- Floating Language Switcher -->
+    <button
+      id="floating-lang-toggle"
+      class="floating-lang lang-switch"
+      aria-label="Cambiar idioma a inglés"
+      type="button"
+      onclick="window.toggleLanguage()"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:#c25270;margin-right:5px;flex-shrink:0;">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+      <span class="lang-es-indicator font-semibold">ES</span>
+      <span class="lang-separator opacity-40 mx-0.5">/</span>
+      <span class="lang-en-indicator">EN</span>
+    </button>
+
+    <!-- Floating Language Button Styles -->
+    <style is:global>
+      .floating-lang {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(42, 26, 53, 0.15);
+        padding: 8px 16px;
+        border-radius: 999px;
+        box-shadow: 0 4px 20px rgba(42, 26, 53, 0.12);
+        color: #2a1a35;
+        cursor: pointer;
+        transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .floating-lang:hover {
+        transform: translateY(-2px);
+        border-color: #c25270;
+        box-shadow: 0 8px 25px rgba(42, 26, 53, 0.18);
+      }
+      .floating-lang .lang-active {
+        color: #2a1a35 !important;
+        font-weight: 700;
+      }
+      .floating-lang .lang-inactive {
+        color: rgba(42, 26, 53, 0.4) !important;
+      }
+    </style>
+
+    <!-- Scroll Reveal Intersection Observer -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const revealElements = document.querySelectorAll('.reveal');
+
+        if (revealElements.length === 0) return;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.15,
+            rootMargin: '0px 0px -40px 0px',
+          }
+        );
+
+        revealElements.forEach((el) => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>

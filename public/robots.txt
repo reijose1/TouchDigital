@@ -1,0 +1,7 @@
+# robots.txt — Learning Touch (Touch Digital & Creative Consulting)
+# Allow all crawlers to index all pages
+
+User-agent: *
+Allow: /
+
+Sitemap: https://learningtouch.com/sitemap-index.xml

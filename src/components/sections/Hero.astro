@@ -1,0 +1,357 @@
+---
+/**
+ * Hero — Full-screen background photo with centered text overlay.
+ * Reference: Light/warm tone, full-viewport image, navy + pink typography.
+ */
+---
+
+<section
+  id="hero"
+  class="hero-section"
+  aria-label="Sección principal — Knowledge in one Clic"
+>
+  <!-- Full-screen background image -->
+  <div class="hero-bg" aria-hidden="true">
+    <img
+      src="/assets/hero/hero-bg.png"
+      alt=""
+      class="hero-bg-img"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+    />
+    <!-- Warm light overlay -->
+    <div class="hero-overlay"></div>
+  </div>
+
+  <!-- Centered content -->
+  <div class="hero-container">
+    <div class="hero-content reveal">
+
+      <!-- Badge pill -->
+      <div class="hero-badge-wrapper">
+        <span class="hero-badge">
+          <span class="badge-dot" aria-hidden="true"></span>
+          <span class="lang-es">CONSULTORÍA POTENCIADA POR IA</span>
+          <span class="lang-en">AI-POWERED CONSULTING</span>
+        </span>
+      </div>
+
+      <!-- Main heading -->
+      <h1 class="hero-title">
+        <span class="hero-title-line1 lang-es">CRECE SIN PAUSA.</span>
+        <span class="hero-title-line1 lang-en">GROW WITHOUT PAUSE.</span>
+      </h1>
+
+      <!-- Eyebrow subtitle -->
+      <p class="hero-eyebrow">
+        <span class="lang-es">COMUNICA SIN LÍMITES</span>
+        <span class="lang-en">COMMUNICATE WITHOUT LIMITS</span>
+      </p>
+
+      <!-- Description -->
+      <p class="hero-description">
+        <span class="lang-es">Soluciones digitales creadas con IA para educación, eventos y empresas. Construimos sistemas de inteligencia seguros, herramientas interactivas y automatizaciones adaptadas a desafíos reales.</span>
+        <span class="lang-en">AI-crafted digital solutions for education, events, and business. We build secure intelligence systems, interactive tools, and automations customized for real-life challenges.</span>
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="hero-buttons">
+        <a href="#contacto" class="btn-primary-hero" id="hero-cta-primary">
+          <span class="lang-es">INICIAR UN PROYECTO</span>
+          <span class="lang-en">START A PROJECT</span>
+        </a>
+        <a href="#servicios" class="btn-secondary-hero" id="hero-cta-secondary">
+          <span class="lang-es">EXPLORAR SERVICIOS</span>
+          <span class="lang-en">EXPLORE SERVICES</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">SCROLL</span>
+  </div>
+</section>
+
+<style>
+  /* ── Section ── */
+  .hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #fdf7f2;
+  }
+
+  /* ── Background image + overlay ── */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+  }
+
+  /* Warm cream/beige overlay — purely warm, no blue */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        110deg,
+        rgba(255, 248, 240, 0.68) 0%,
+        rgba(255, 245, 235, 0.50) 50%,
+        rgba(255, 242, 228, 0.28) 100%
+      );
+    z-index: 1;
+  }
+
+  /* ── Container ── */
+  .hero-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 5vw, 80px);
+    text-align: center;
+    padding-top: 80px; /* offset for fixed nav */
+  }
+
+  /* ── Content stack ── */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* ── Badge ── */
+  .hero-badge-wrapper {
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 18px;
+    background: rgba(194, 82, 112, 0.12);
+    border: 1.5px solid rgba(194, 82, 112, 0.35);
+    border-radius: 9999px;
+    color: #c25270;
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .badge-dot {
+    width: 7px;
+    height: 7px;
+    background: #c25270;
+    border-radius: 50%;
+    animation: badge-pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes badge-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(1.25); }
+  }
+
+  /* ── Main heading ── */
+  .hero-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .hero-title-line1 {
+    font-family: var(--font-heading);
+    font-size: clamp(44px, 7vw, 80px);
+    font-weight: 800;
+    color: #2a1a35;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  .hero-title-line2 {
+    font-family: var(--font-heading);
+    font-size: clamp(44px, 7vw, 80px);
+    font-weight: 800;
+    color: #2a1a35;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  .hero-title-accent {
+    font-style: normal;
+    color: #c25270;
+  }
+
+  /* ── Eyebrow subtitle ── */
+  .hero-eyebrow {
+    font-family: var(--font-ui);
+    font-size: clamp(15px, 1.6vw, 20px);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #2a1a35;
+    margin-top: 0.5rem;
+  }
+
+  /* ── Description ── */
+  .hero-description {
+    font-family: var(--font-body);
+    font-size: clamp(16px, 1.5vw, 20px);
+    color: #150c1f;
+    line-height: 1.75;
+    max-width: 540px;
+    opacity: 1;
+    margin-top: 0.25rem;
+  }
+
+  /* ── Buttons ── */
+  .hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.875rem;
+    margin-top: 1.25rem;
+  }
+
+  .btn-primary-hero {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 2rem;
+    background: #2a1a35;
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border-radius: 9999px;
+    border: 2px solid #2a1a35;
+    transition: background 0.22s ease, transform 0.18s ease, box-shadow 0.22s ease;
+  }
+
+  .btn-primary-hero:hover {
+    background: #3b2244;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42, 26, 53, 0.35);
+  }
+
+  .btn-secondary-hero {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 2rem;
+    background: transparent;
+    color: #2a1a35;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border-radius: 9999px;
+    border: 2px solid #2a1a35;
+    transition: background 0.22s ease, color 0.22s ease, transform 0.18s ease;
+  }
+
+  .btn-secondary-hero:hover {
+    background: #2a1a35;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  /* ── Scroll indicator ── */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 1;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 36px;
+    background: #4a3050;
+    opacity: 0.35;
+    animation: scroll-drop 2s ease-in-out infinite;
+  }
+
+  .scroll-text {
+    font-family: var(--font-ui);
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    color: #4a3050;
+    opacity: 0.5;
+    text-transform: uppercase;
+  }
+
+  @keyframes scroll-drop {
+    0%   { transform: scaleY(1) translateY(0); opacity: 0.35; }
+    50%  { transform: scaleY(0.6) translateY(8px); opacity: 0.6; }
+    100% { transform: scaleY(1) translateY(0); opacity: 0.35; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .hero-container {
+      padding-top: 96px;
+    }
+
+    .hero-overlay {
+      background: rgba(253, 247, 242, 0.68);
+    }
+
+    .hero-title-line1,
+    .hero-title-line2 {
+      font-size: clamp(36px, 10vw, 52px);
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .btn-primary-hero,
+    .btn-secondary-hero {
+      width: 100%;
+      max-width: 280px;
+    }
+  }
+
+  #hero {
+    scroll-margin-top: 80px;
+  }
+</style>

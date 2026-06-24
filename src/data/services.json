@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title_es": "Desarrollo Web & Automatización IA",
+    "title_en": "Web Development & AI Automation",
+    "description_es": "Sitios web optimizados y agentes de IA en la nube para automatizar procesos.",
+    "description_en": "Optimized websites and cloud AI agents to automate your business processes.",
+    "icon": "🌐",
+    "link": "/servicios/desarrollo-web"
+  },
+  {
+    "id": 2,
+    "title_es": "Publicidad & Redes Sociales",
+    "title_en": "Advertising & Social Media",
+    "description_es": "Campañas de alto impacto y gestión de comunidades para potenciar tu marca.",
+    "description_en": "High-impact campaigns and community management to boost your brand.",
+    "icon": "📱",
+    "link": "/servicios/publicidad"
+  },
+  {
+    "id": 3,
+    "title_es": "Recursos Educativos",
+    "title_en": "Educational Resources",
+    "description_es": "Ebooks interactivos, audios, videos y materiales didácticos personalizados.",
+    "description_en": "Interactive ebooks, audio, videos, and custom learning materials.",
+    "icon": "🎓",
+    "link": "/servicios/recursos-educativos"
+  },
+  {
+    "id": 4,
+    "title_es": "Contenido & Comunicación Digital",
+    "title_en": "Content & Digital Communication",
+    "description_es": "Estrategias omnicanal, contenido audiovisual y comunicación interactiva.",
+    "description_en": "Omnichannel strategies, audiovisual content, and interactive communication.",
+    "icon": "📡",
+    "link": "/servicios/comunicacion"
+  }
+]

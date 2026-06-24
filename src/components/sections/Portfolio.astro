@@ -1,0 +1,167 @@
+---
+/**
+ * Portfolio — Masonry-style grid showcasing project work.
+ * Dark Lilac background with hover overlay effects.
+ * Reads project data from portfolio.json.
+ *
+ * Implements:
+ * - content-spec.md Section 4 (Portfolio copy & images)
+ * - design.md Section 4.4 (narrative flow — The "How")
+ */
+import portfolioData from '../../data/portfolio.json';
+
+interface PortfolioItem {
+  /** URL-friendly slug */
+  slug: string;
+  /** Project title in Spanish */
+  title: string;
+  /** Project description in Spanish */
+  description: string;
+  /** Path to the project image */
+  image: string;
+  /** Project title in English */
+  titleEn: string;
+  /** Project description in English */
+  descriptionEn: string;
+}
+
+const projects = portfolioData as PortfolioItem[];
+---
+
+<section
+  id="portafolio"
+  class="portfolio-section"
+  aria-label="Portafolio — Trabajos que trascienden"
+>
+  <div class="section-container">
+    <h2 class="text-h2 portfolio-title reveal">
+      <span class="lang-es">Trabajos que trascienden.</span>
+      <span class="lang-en">Projects that transcend.</span>
+    </h2>
+
+    <div class="portfolio-grid reveal reveal-stagger">
+      {projects.map((project, index) => (
+        <article
+          class={`portfolio-card portfolio-card--${index % 2 === 0 ? 'tall' : 'short'}`}
+          role="article"
+        >
+          <img
+            src={project.image}
+            alt={`Proyecto: ${project.title} — ${project.description}`}
+            width="600"
+            height={index % 2 === 0 ? 500 : 350}
+            loading="lazy"
+            decoding="async"
+            class="portfolio-image"
+          />
+          <div class="portfolio-overlay">
+            <h3 class="text-h3 portfolio-card-title">
+              <span class="lang-es">{project.title}</span>
+              <span class="lang-en">{project.titleEn}</span>
+            </h3>
+            <p class="text-body portfolio-card-desc">
+              <span class="lang-es">{project.description}</span>
+              <span class="lang-en">{project.descriptionEn}</span>
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .portfolio-section {
+    background: var(--color-bg-dark);
+    padding: clamp(4rem, 8vw, 8rem) 0;
+    position: relative;
+  }
+
+  .portfolio-title {
+    text-align: center;
+    color: var(--color-primary-nude);
+    margin-bottom: 3rem;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .portfolio-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    will-change: transform;
+    transition: transform var(--duration-state) var(--ease-state);
+  }
+
+  .portfolio-card:hover {
+    transform: scale(1.02);
+  }
+
+  /* Masonry-like varying heights */
+  .portfolio-card--tall {
+    grid-row: span 1;
+  }
+
+  .portfolio-card--short {
+    grid-row: span 1;
+  }
+
+  .portfolio-image {
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--duration-entrance) var(--ease-entrance);
+  }
+
+  .portfolio-card:hover .portfolio-image {
+    transform: scale(1.08);
+  }
+
+  .portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(59, 34, 68, 0.9) 0%,
+      rgba(59, 34, 68, 0.3) 50%,
+      transparent 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity var(--duration-state) var(--ease-state);
+  }
+
+  .portfolio-card:hover .portfolio-overlay {
+    opacity: 1;
+  }
+
+  .portfolio-card-title {
+    color: #fff;
+    font-size: clamp(18px, 2vw, 24px);
+    margin-bottom: 4px;
+  }
+
+  .portfolio-card-desc {
+    color: var(--color-primary-nude);
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 640px) {
+    .portfolio-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

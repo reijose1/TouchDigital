@@ -1,0 +1,81 @@
+---
+/**
+ * Button — Reusable CTA component with Primary and Secondary variants.
+ * Follows design.md Section 5.2 for styling and component-blueprint.md Section 2 for behavior.
+ *
+ * @prop {'primary' | 'secondary'} variant - Visual variant (primary = filled, secondary = outline)
+ * @prop {'large' | 'medium'} size - Size variant matching Hero vs internal section usage
+ * @prop {string} href - Optional link URL (renders as <a> instead of <button>)
+ * @prop {string} ariaLabel - Accessible label for screen readers
+ */
+interface Props {
+  /** Visual variant (primary for CTAs, secondary for outlines) */
+  variant?: 'primary' | 'secondary';
+  /** Size variant (large for Hero, medium for internal sections) */
+  size?: 'large' | 'medium';
+  /** Optional link URL — renders as anchor tag when provided */
+  href?: string;
+  /** Accessible label for screen readers */
+  ariaLabel?: string;
+  /** Optional HTML id */
+  id?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'medium',
+  href,
+  ariaLabel,
+  id,
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+
+const baseClasses = [
+  'inline-flex items-center justify-center',
+  'text-ui font-semibold',
+  'rounded-full',
+  'transition-all',
+  'cursor-pointer',
+  'select-none',
+  'focus-visible:outline-3 focus-visible:outline-[var(--color-accent-honeysuckle)] focus-visible:outline-offset-4',
+].join(' ');
+
+const variantClasses = variant === 'primary'
+  ? 'bg-[var(--color-accent-honeysuckle)] text-white hover:scale-[1.03] hover:shadow-[0_8px_24px_rgba(194,82,112,0.4)]'
+  : 'border-2 border-[var(--color-primary-lilac)] text-[var(--color-primary-lilac)] hover:bg-[var(--color-primary-lilac)] hover:text-[var(--color-primary-nude)]';
+
+const sizeClasses = size === 'large'
+  ? 'px-10 py-4 text-base'
+  : 'px-6 py-3 text-sm';
+
+const classes = `${baseClasses} ${variantClasses} ${sizeClasses}`;
+---
+
+{Tag === 'a' ? (
+  <a
+    href={href}
+    class={classes}
+    aria-label={ariaLabel}
+    id={id}
+    role="link"
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    class={classes}
+    aria-label={ariaLabel}
+    id={id}
+    type="button"
+  >
+    <slot />
+  </button>
+)}
+
+<style>
+  a, button {
+    transition-duration: var(--duration-micro);
+    transition-timing-function: var(--ease-micro);
+  }
+</style>
